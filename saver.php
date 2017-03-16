@@ -1,22 +1,26 @@
 <?php
-require "configuration.php";
+$objConnection = new mysqli('localhost', 'root', '', 'dbiplog');
 
-// Create connection
-$objConnection = new mysqli($strServer, $strUsername, $strPassword, $strDatabase);
-// Check connection
-if ($objConnection->connect_error) {
-die("Connection failed! Cannot connect to database: " . $objConnection->connect_error);
+$strTable       = 'tblLogging';
+
+$strIP          = $_SERVER['REMOTE_ADDR'];
+$strCountry     = implode ('', file ("http://ip-api.com/php/". $strIP . "?fields=countryCode"));
+// NOT WORK ATM $strOrigin      = $_SERVER['HTTP_REFERER'];
+$strOrigin      = "UC";
+$strHash        = hash('sha512', $strIP);
+
+$objQuery = "INSERT INTO $strTable (ip, country, origin, hash) VALUES ('$strIP', '$strCountry', '$strOrigin', '$strHash')";
+
+if (!$objConnection) {
+    die('Could not connect: ' . mysqli_error());
 }
 
-$objQuery = "INSERT INTO '$strTable' (ip, coutry, reff, hash) VALUES ('$strIP', '$strLink', '$strReff', '$strHash')";
 
-if ($objConnection->query($objQuery) === TRUE) {
-
+if (mysqli_query($objConnection, $objQuery)) {
+    echo "New record created successfully";
 } else {
-// Is your own risk when your users see the save error message
-echo "Error: " . $objQuery . "<br>" . $objConnection->error;
-
+    echo "Error: " . $objQuery . "<br>" . mysqli_error($objConnection);
 }
 
-$objConnection->close();
+mysqli_close($objConnection);
 ?>
