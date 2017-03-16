@@ -1,8 +1,8 @@
 
 $strServer      = "localhost";
-$strUsername    = "forge";
-$strPassword    = "forge";
-$strDatabase    = "forge";
+$strUsername    = "root";
+$strPassword    = "";
+$strDatabase    = "dbIPLog";
 $strTable       = "tblLogging";
 
 $strIP          = $_SERVER['REMOTE_ADDR'];
