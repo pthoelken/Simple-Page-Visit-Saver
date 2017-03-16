@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS `tblLogging`;
 CREATE TABLE `tblLogging` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
   `ip` varchar(50) DEFAULT NULL,
-  `from` varchar(50) DEFAULT NULL,
+  `country` varchar(50) DEFAULT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `reff` varchar(255) DEFAULT NULL,
   `hash` varchar(255) DEFAULT NULL,
