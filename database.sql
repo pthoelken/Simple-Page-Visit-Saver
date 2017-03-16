@@ -6,7 +6,7 @@ CREATE TABLE `tblLogging` (
   `ip` varchar(50) DEFAULT NULL,
   `country` varchar(50) DEFAULT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `reff` varchar(255) DEFAULT NULL,
+  `origin` varchar(255) DEFAULT NULL,
   `hash` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
